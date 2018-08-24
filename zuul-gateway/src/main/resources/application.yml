@@ -1,0 +1,37 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: zuul-gateway
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+      
+zuul:
+  prefix: /chk
+  routes:
+    test-redirect:
+      path: /redirect/**
+      url: https://google.com/
+    by-host:
+      path: /host/**
+      url: http://localhost:8081
+    by-service:
+      path: /service/**
+      url: emp-data-service
+    by-hr-service:
+      path: /hr/**
+      url: hr-service 
+
+#    by-hr-service-list:
+#      path: /hrlist
+#      url: http://hr-service/hr/list
+#    by-feign-service:
+#      path: /feign/**
+#      url: hr-service-feign
+
+      
+#emp service 8081, hr service 8090     
